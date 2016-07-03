@@ -1,5 +1,5 @@
 ﻿/*
- *  jQuery Spam Guard v1.1
+ *  jQuery Spam Guard v1.2
  *
  * 		Example I:
  *			<a href="#" class="replace-me">MMm="ar$5Lk{{at}}(EUg%ma~iPl#~.NcEoTm</a>
@@ -20,6 +20,7 @@
 		var $defaults = {
 			protect: "email",
 			setHref: true,
+			content: false,
 		};
 
 		var $o = $.extend({}, $defaults, $options);
@@ -42,7 +43,13 @@
 				$(this).attr("href", $href);
 			}
 
-			$(this).html($content);
+
+			if($o.content !== false){
+				$(this).html($o.content);
+			}
+			else{
+				$(this).html($content);
+			}
 		});
 	};
 })(jQuery);
