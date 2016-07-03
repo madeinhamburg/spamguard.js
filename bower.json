@@ -1,0 +1,25 @@
+{
+  "name": "jquery-spamguard",
+  "homepage": "https://github.com/philippgithub/jquery-spamguard",
+  "authors": [
+    "Philipp <philipp@mediathek.io>"
+  ],
+  "description": "",
+  "main": "dist/jquery.spamguard.js",
+  "moduleType": [],
+  "keywords": [
+    "anti-spam",
+    "antispam",
+    "spam",
+    "spam protection",
+    "email"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

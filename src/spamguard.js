@@ -1,6 +1,5 @@
-﻿/*
- *  jQuery Spam Guard
- *    v.1.0
+﻿/*!
+ *  jQuery Spam Guard v1.0
  *
  * 		Example I:
  *			<a href="#" class="replace-me">MMm="ar$5Lk{{at}}(EUg%ma~iPl#~.NcEoTm</a>
@@ -13,7 +12,6 @@
  *			<script> $(".replace-me").spamguard({ protect: "telephone" }); </script>
  *		Turns into:
  *			<a href="tel:+4940300200100" class="replace-me">+49 (040) 030 020 010</a>
- *
  *
  */
 
@@ -35,6 +33,7 @@
 				$href 		= "tel:"+$content.replace(/[^0-9\+]+/g, "");
 			}
 			else{ // email
+				$content 	= $content.replace(/{{at}}/gi, "@");
 				$content 	= $content.replace(/[^a-z.@_-]+/g, "");
 				$href 		= "mailto:"+$content;
 			}
