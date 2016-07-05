@@ -1,23 +1,6 @@
-﻿/*
- *  jQuery Spam Guard v1.3
- *
- * 		Example I:
- *			<a href="#" class="replace-me">MMm="ar$5Lk{{at}}(EUg%ma~iPl#~.NcEoTm</a>
- *			<script> $(".replace-me").spamguard({ protect: "email" }); </script>
- *		Turns into:
- *			<a href="mailto:mark@gmail.com" class="replace-me">mark@gmail.com</a>
- *
- * 		Example II:
- *			<a href="#" class="replace-me">+4$9_(0"4e0') 0=&_3#0 02%0 0{1~0</a>
- *			<script> $(".replace-me").spamguard({ protect: "telephone" }); </script>
- *		Turns into:
- *			<a href="tel:+4940300200100" class="replace-me">+49 (040) 030 020 010</a>
- *
- *
- *
- * 		Helper:
- *			<script> document.write( $.spamguardEncode("mark@gmail.com") ); </script>
- *
+﻿/*!
+ *  jQuery Spam Guard v1.4
+ *	https://github.com/philippgithub/jquery-spamguard
  */
 
 (function($){

@@ -2,6 +2,21 @@
 
 
 
+### Usage
+```javascript
+$(selector).spamguard(options);
+
+$("div").spamguard({ protect: "email" });
+```
+
+
+### Options
+| Property | Default | Description |
+|---|---|---|
+| `protect` | 'email' (string) | email or telephone |
+| `setHref` | true (boolean)  | set `href=""` if it's an `a`-tag |
+| `content` | false (boolean) | `false` *(boolean)* or a custom *string* (see Example II) |
+| `noindex` | true (boolean) | prepend `<!--noindex--><!--googleoff: all-->` |
 
 
 
@@ -38,7 +53,7 @@ Turns into
 ### Example III
 
 ```html
-<a href="#" class="replace-me">+4$9_(0"4e0') 0=&_3#0 02%0 0{1~0</a>
+<a href="#" class="replace-me">+4$9_(0"4e0') 0=_3#0 02%0 0{1~0</a>
 <script>
 	$(".replace-me").spamguard({ protect: "telephone" });
 </script>
@@ -46,6 +61,21 @@ Turns into
 Turns into
 ```html
 <a href="tel:+4940300200100" class="replace-me">+49 (040) 030 020 010</a>
+```
+
+
+
+### Example IV
+
+```html
+<span class="replace-me">MMm="ar$5Lk{{at}}(EUg%ma~iPl#~.NcEoTm</span>
+<script>
+	$(".replace-me").spamguard();
+</script>
+```
+Turns into
+```html
+<span class="replace-me">mark@gmail.com</span>
 ```
 
 

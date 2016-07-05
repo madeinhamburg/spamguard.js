@@ -1,5 +1,6 @@
 {
 	"name": "jquery-spamguard",
+	"version": "1.4",
 	"homepage": "https://github.com/philippgithub/jquery-spamguard",
 	"authors": [
 		"Philipp <philipp@mediathek.io>"
@@ -14,12 +15,11 @@
 		"spam protection",
 		"email"
 	],
-	"license": "MIT",
 	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests"
-	]
+		".gitignore",
+		"bower.json"
+	],
+    "dependencies": {
+        "jquery": ">=1.10.2"
+    }
 }
