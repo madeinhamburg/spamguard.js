@@ -2,12 +2,16 @@
 
 
 
+
+
 ### Usage
 ```javascript
 $(selector).spamguard(options);
 
 $("div").spamguard({ protect: "email" });
 ```
+[Demo](http://htmlpreview.github.io/?https://github.com/philippgithub/jquery-spamguard/blob/master/example/index.html)
+
 
 
 ### Options
@@ -23,7 +27,7 @@ $("div").spamguard({ protect: "email" });
 ### Example I
 
 ```html
-<a href="#" class="replace-me">MMm="ar$5Lk{{at}}(EUg%ma~iPl#~.NcEoTm</a>
+<a href="#" class="replace-me">m:aGrkS@HFg´~mGa=i*Ä~lZ.ScI!;oLmD?{</a>
 <script>
 	$(".replace-me").spamguard();
 </script>
@@ -38,7 +42,7 @@ Turns into
 ### Example II
 
 ```html
-<a href="#" class="replace-me">MMm="ar$5Lk{{at}}(EUg%ma~iPl#~.NcEoTm</a>
+<a href="#" class="replace-me">marJkF@IgO:m]Ä§a€!iSEÜlT;F.#}cVo}mCÖ</a>
 <script>
 	$(".replace-me").spamguard({ content: '<i class="fa fa-heart"></i>' });
 </script>
@@ -68,7 +72,7 @@ Turns into
 ### Example IV
 
 ```html
-<span class="replace-me">MMm="ar$5Lk{{at}}(EUg%ma~iPl#~.NcEoTm</span>
+<span class="replace-me">m§ICarkW{@KgU*ma|E*iG'|lLU§.?DKc=Bo~mM</span>
 <script>
 	$(".replace-me").spamguard();
 </script>

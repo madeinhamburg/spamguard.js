@@ -1,5 +1,5 @@
 ﻿/*!
- *  jQuery Spam Guard v1.4
+ *  jQuery Spam Guard v1.5
  *	https://github.com/philippgithub/jquery-spamguard
  */
 
@@ -25,7 +25,7 @@
 			}
 			else{ // email
 				$content 	= $content.replace(/{{at}}/gi, "@");
-				$content 	= $content.replace(/{{dot}}/gi, "@");
+				$content 	= $content.replace(/{{dot}}/gi, ".");
 				$content 	= $content.replace(/[^a-z0-9.@_-]+/g, "");
 				$href 		= "mailto:"+$content;
 			}
@@ -52,19 +52,6 @@
 
 
 
-	$.spamguardRandomNum = function($min, $max){
-		return Math.floor(Math.random() * ($max - $min + 1) + $min);
-	};
-
-	$.spamguardRandomString = function($characters){
-		var $string = "";
-		for(var i=0; i < $.spamguardRandomNum(0, 4); i++){
-			var $pos = $.spamguardRandomNum(0, $characters.length);
-			$string += $characters.charAt($pos, $pos+1);
-		}
-		return $string;
-	};
-
 	$.spamguardEncode = function($string, $options){
 		var $defaults = {
 			characters: "ABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜ;:!'§${}=?`´€~[]|*#",
@@ -79,5 +66,18 @@
 		}
 
 		return $return;
+	};
+
+	$.spamguardRandomNum = function($min, $max){
+		return Math.floor(Math.random() * ($max - $min + 1) + $min);
+	};
+
+	$.spamguardRandomString = function($characters){
+		var $string = "";
+		for(var i=0; i < $.spamguardRandomNum(0, 4); i++){
+			var $pos = $.spamguardRandomNum(0, $characters.length);
+			$string += $characters.charAt($pos, $pos+1);
+		}
+		return $string;
 	};
 })(jQuery);
