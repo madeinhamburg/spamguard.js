@@ -1,12 +1,12 @@
 <!doctype html>
-<html class="no-js">
+<html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>jquery-spamguard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" />
     </head>
     <body>
 		<style type="text/css">
@@ -32,6 +32,29 @@
 			small{
 				cursor: default;
 			}
+			.output div{
+				position: relative;
+				padding: 45px 15px 15px 15px;
+				margin: 0 -15px 15px;
+				min-height: 80px;
+				box-sizing: border-box;
+			}
+			.output div:after{
+				position: absolute;
+				top: 15px;
+				left: 15px;
+				font-size: 12px;
+				font-weight: 700;
+				color: #959595;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+			.output div.encode:after{
+				content: "Encoded output";
+			}
+			.output div.decode:after{
+				content: "Decoded output";
+			}
 		</style>
 
 		<div class="container">
@@ -44,36 +67,28 @@
 					<option value="telephone">Telephone number</option>
 				</select>
 			</div>
-			<div class="form-group">
-				<label class="radio-inline">
-					<input type="radio" name="endecode" value="en" checked /> Encode input
-				</label>
-				<label class="radio-inline">
-					<input type="radio" name="endecode" value="de" /> Decode input
-				</label>
-			</div>
 
 			<hr />
 
-			<div class="output"></div>
+			<div class="output">
+				<div class="encode"></div>
+				<div class="decode"></div>
+			</div>
 		</div>
 
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="jquery.spamguard.js"></script>
-		
-		
-		<script type="text/javascript">
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/philippgithub/jquery-spamguard/dist/jquery.spamguard.js"></script>
+
+
+		<script>
 			$(function(){
-				$(".container").on("change keydown", function(){
-					if($("input[name=endecode]:checked").val() == "en"){
-						var $output = $.spamguardEncode( $("input[name=input]").val() );
-						$(".output").html($output);
-					}
-					else{
-						$(".output").html( $("input[name=input]").val() );
-						$(".output").spamguard({ protect: $("[name=protect]:selected").val() });
-					}
+				$(".container input, .container select").on("change keyup", function(){
+					$(".encode, .decode").text(
+						$.spamguardEncode($("input[name=input]").val())
+					);
+
+					$(".decode").spamguard({ protect: $("[name=protect]").val() });
 				});
 			});
 		</script>
