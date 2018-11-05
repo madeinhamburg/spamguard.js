@@ -39,7 +39,7 @@
 			$content = $decoded;
 
 
-			if($o.protect === "telephone" || $o.protect === "tel"){
+			if($o.protect === "telephone" || $o.protect === "tel" || $o.protect === "tele"){
 				$content	= $content.replace(/[^0-9 \+\/\(\)\-\.]+/g, "");
 				$href 		= "tel:"+ $content.replace(/[^0-9\+]+/g, "");
 			}
