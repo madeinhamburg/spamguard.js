@@ -8,7 +8,7 @@ $(selector).spamguard(options);
 
 $("div").spamguard({ protect: "email" });
 ```
-[Demo](http://htmlpreview.github.io/?https://github.com/philippgithub/jquery-spamguard/blob/master/example/index.html)
+[Demo](https://htmlpreview.github.io/?https://github.com/philippgithub/jquery-spamguard/blob/master/example/index.html)
 
 
 
