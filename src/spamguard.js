@@ -1,6 +1,6 @@
 ﻿/*!
- *  jQuery Spam Guard v2.0
- *  https://github.com/philippgithub/jquery-spamguard
+ *  jQuery Spam Guard v2.0.1
+ *  https://github.com/madeinhamburg/jquery-spamguard
  */
 
 (function($){
