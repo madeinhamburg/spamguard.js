@@ -16,11 +16,7 @@
 		"email protection",
 		"email"
 	],
-	"ignore": [
-		".gitignore",
-		"bower.json"
-	],
-    "dependencies": {
-        "jquery": ">=1.10"
-    }
+	"dependencies": {
+		"jquery": ">=1.9"
+	}
 }
