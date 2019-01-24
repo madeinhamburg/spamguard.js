@@ -1,0 +1,27 @@
+{
+	"name": "jquery-spamguard",
+	"version": "2.0",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:madeinhamburg/jquery-spamguard.git"
+	},
+	"description": "",
+	"keywords": [
+		"anti-spam",
+		"antispam",
+		"spam",
+		"spam protection",
+		"email protection",
+		"email"
+	],
+	"author": "Philipp <philipp@madein.hamburg>",
+	"homepage": "https://github.com/madeinhamburg/jquery-spamguard",
+	"bugs": {
+		"url": "https://github.com/madeinhamburg/jquery-spamguard/issues"
+	},
+	"main": "dist/jquery.spamguard.js",
+	"scripts": {},
+	"dependencies": {
+		"jquery": ">=1.9"
+	}
+}
