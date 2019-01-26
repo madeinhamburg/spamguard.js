@@ -1,6 +1,6 @@
 {
 	"name": "jquery-spamguard",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:madeinhamburg/jquery-spamguard.git"
@@ -20,8 +20,16 @@
 		"url": "https://github.com/madeinhamburg/jquery-spamguard/issues"
 	},
 	"main": "dist/jquery.spamguard.js",
-	"scripts": {},
+	"scripts": {
+		"build": "gulp build"
+	},
 	"dependencies": {
 		"jquery": ">=1.9"
+	},
+	"devDependencies": {
+		"gulp": "^4.0.0",
+		"gulp-concat": "^2.6.1",
+		"gulp-replace": "^1.0.0",
+		"gulp-uglify": "^3.0.1"
 	}
 }
