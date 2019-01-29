@@ -21,8 +21,11 @@ gulp.task("version", function(cb) {
 gulp.task("js", function() {
 	return gulp
 		.src("./src/spamguard.js")
+		.pipe(replace(/\@name/g, package.name))
 		.pipe(replace(/\@version/g, package.version))
+		.pipe(replace(/\@description/g, package.description))
 		.pipe(replace(/\@homepage/g, package.homepage))
+		.pipe(replace(/\@license/g, package.license))
 		.pipe(uglify({
 			output: {
 				comments: "/^!/"
