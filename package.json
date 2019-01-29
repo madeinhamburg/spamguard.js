@@ -14,6 +14,7 @@
 		"email protection",
 		"email"
 	],
+	"license": "MIT",
 	"author": "Philipp <philipp@madein.hamburg>",
 	"homepage": "https://github.com/madeinhamburg/jquery-spamguard",
 	"bugs": {
