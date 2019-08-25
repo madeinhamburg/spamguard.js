@@ -30,7 +30,7 @@ $(selector).spamguard();
 
 ### Options
 | Attribute | Type | Default | Description |
-|---|---|---|
+|---|---|---|---|
 | `data-name` | `string` | | Everything before the `@` of your email address |
 | `data-domain` | `string` | | Domain name without extension |
 | `data-tld` | `string` | | Extension without `.` |
