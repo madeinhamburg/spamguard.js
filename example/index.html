@@ -37,52 +37,19 @@
 			cursor: default;
 		}
 
-		.output div {
-			position: relative;
-			padding: 45px 15px 15px 15px;
-			margin: 0 -15px 15px;
-			min-height: 80px;
-			box-sizing: border-box;
-		}
-
-		.output div:after {
-			position: absolute;
-			top: 15px;
-			left: 15px;
-			font-size: 12px;
-			font-weight: 700;
-			color: #959595;
-			text-transform: uppercase;
-			letter-spacing: 1px;
-		}
-
-		.output div.encode:after {
-			content: "Encoded output";
-		}
-
-		.output div.decode:after {
-			content: "Decoded output";
+		a {
+			display: block;
+			margin: 10px 0;
 		}
 	</style>
 
 
 	<div class="container">
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Your input" name="input" />
-		</div>
-		<div class="form-group">
-			<select class="form-control" name="protect">
-				<option value="email" selected>Email address</option>
-				<option value="telephone">Telephone number</option>
-			</select>
-		</div>
+		<a class="email" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true">This text will be replaced by your mail address.</a>
 
-		<hr />
-
-		<div class="output">
-			<div class="encode"></div>
-			<div class="decode"></div>
-		</div>
+		<a class="email" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true" data-content="true" data-subject="Contact" data-message="Hello. This is a preset.">
+			<span class="glyphicon glyphicon-envelope"></span>
+		</a>
 	</div>
 
 
@@ -92,15 +59,7 @@
 
 	<script>
 		$(function() {
-			$(".container input, .container select").on("change keyup", function() {
-				$(".encode, .decode").text(
-					$.spamguardEncode($("input[name=input]").val())
-				);
-
-				$(".decode").spamguard({
-					protect: $("[name=protect]").val()
-				});
-			});
+			$(".email").spamguard();
 		});
 	</script>
 </body>

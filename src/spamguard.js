@@ -1,103 +1,80 @@
 /*!
- *  jQuery Spam Guard v@version
+ *  @name v@version
+ *  @description
  *  @homepage
+ *  Licensed under the @license license.
  */
 
 (function($) {
-	$.fn.spamguard = function($options) {
-		var $defaults = {
-			protect: "email",
-			sethref: true,
-			content: false,
-			noindex: true,
-		};
+	$.fn.spamguard = function() {
+		var $$newId = (function($length) {
+			var $characters = "abcdefghijklmnopqrstuvwxyz0123456789",
+				$string = "";
 
-		var $o = $.extend({}, $defaults, $options);
+			for (var i = 0; i < $length; i++) {
+				$string += $characters.charAt(Math.floor(Math.random() * $characters.length));
+			}
 
-		var $characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!'§$=?`´€~[]|*#-_.,;:@+/";
+			return $string;
+		});
 
-
-		return this.each(function() {
-			var $content = $(this).html(),
-				$href = null,
-				$decoded = "";
-
-			for (i = 0; i < $content.length; i++) {
-				$prevChar = $content[i - 1];
-				$thisChar = $content[i];
-				if ($.inArray($thisChar, $characters.split("")) !== -1) {
-					if ($prevChar === "\\") {
-						$decoded = $decoded + $thisChar;
-					}
+		var $$convertIt = (function($string, $t) {
+			var $response = "";
+			for (i = 0; i < $string.length; i++) {
+				if ($t == "hex") {
+					$response += "&#x" + $string.charCodeAt(i).toString(16) + ";";
 				} else {
-					if ($thisChar !== "\\") {
-						$decoded = $decoded + $thisChar;
+					$response += "\\" + $string.charCodeAt(i).toString(16);
+				}
+			}
+			return $response;
+		});
+
+
+
+		return $(this).each(function() {
+			var $className = "spamguard-" + $$newId(12);
+
+			var $value = $(this).data("name") + "@" + $(this).data("domain") + "." + $(this).data("tld");
+			var $valuerRversed = $value.split("").reverse().join("");
+
+			var $mailto = (typeof($(this).data("mailto")) !== "undefined" && $(this).data("mailto") !== "" && $(this).data("mailto") != "false") ? true : false;
+			var $content = (typeof($(this).data("content")) !== "undefined" && $(this).data("content") !== "" && $(this).data("content") != "false") ? true : false;
+
+			var $subject = (typeof($(this).data("subject")) !== "undefined" && $(this).data("subject") !== "" && $(this).data("subject") != "false") ? $(this).data("subject") : false;
+			var $message = (typeof($(this).data("message")) !== "undefined" && $(this).data("message") !== "" && $(this).data("message") != "false") ? $(this).data("message") : false;
+
+
+			if ($content == false) {
+				$("head").append("<style>." + $className + ":after{content:\"" + $$convertIt($valuerRversed) + "\"}</style>");
+
+				$(this).css({
+					"direction": "rtl",
+					"unicode-bidi": "bidi-override",
+					"text-align": "left",
+				});
+
+				$(this).addClass($className).html("");
+			}
+
+
+			if ($mailto == true) {
+				$(this).on("click", function(e) {
+					e.preventDefault();
+
+					var $href = "mai";
+					$href += "lto:" + $value + "?";
+
+					if ($subject != false) {
+						$href += "&subject=" + encodeURIComponent($subject);
 					}
-				}
-			}
+					if ($message != false) {
+						$href += "&body=" + encodeURIComponent($message);
+					}
 
-			$content = $decoded;
-
-
-			if ($o.protect === "telephone" || $o.protect === "tel" || $o.protect === "tele") {
-				$content = $content.replace(/[^0-9 \+\/\(\)\-\.]+/g, "");
-				$href = "tel:" + $content.replace(/[^0-9\+]+/g, "");
-			}
-			if ($o.protect === "email" || $o.protect === "mail") {
-				$href = "mailto:" + $content;
-			}
-
-			if ($(this).is("a") && $o.sethref === true && $href !== null) {
-				$(this).attr("href", $href);
-			}
-
-
-			if ($o.content !== false) {
-				if ($o.noindex === true) {
-					$o.content = "<!--noindex--><!--googleoff: all-->" + $o.content + "<!--googleon: all--><!--/noindex-->";
-				}
-				$(this).html($o.content);
-			} else {
-				if ($o.noindex === true) {
-					$content = "<!--noindex--><!--googleoff: all-->" + $content + "<!--googleon: all--><!--/noindex-->";
-				}
-				$(this).html($content);
+					return;
+				});
 			}
 		});
-	};
-
-
-
-	$.spamguardEncode = function($string, $options) {
-		var $o = $.extend({}, {}, $options);
-
-		var $characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!'§$=?`´€~[]|*#-_.,;:@+/";
-
-		var $return = "";
-		for (var i = 0; i < $string.length; i++) {
-			var $s = $string[i];
-
-			for (var j = 0; j < $characters.length; j++) {
-				$s = $s.replace($characters[j], "\\" + $characters[j]);
-			}
-
-			$return += $s;
-			$return += $.spamguardRandomString($characters);
-		}
-
-		return $return;
-	};
-
-	$.spamguardRandomNum = function($min, $max) {
-		return Math.floor(Math.random() * ($max - $min + 1) + $min);
-	};
-
-	$.spamguardRandomString = function($characters) {
-		var $string = "";
-		for (var i = 0; i < $.spamguardRandomNum(0, 3); i++) {
-			var $pos = $.spamguardRandomNum(0, $characters.length);
-			$string += $characters.charAt($pos, $pos + 1);
-		}
-		return $string;
 	};
 })(jQuery);

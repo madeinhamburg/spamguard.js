@@ -1,18 +1,19 @@
 {
 	"name": "jquery-spamguard",
-	"version": "2.1.0",
+	"version": "3.0.0",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:madeinhamburg/jquery-spamguard.git"
 	},
-	"description": "",
+	"description": "Protect your email address from getting crawled by spam bots. 🤖",
 	"keywords": [
 		"anti-spam",
-		"antispam",
-		"spam",
-		"spam protection",
+		"email address",
 		"email protection",
-		"email"
+		"hide email",
+		"jquery-plugin",
+		"obfuscate email",
+		"spam protection"
 	],
 	"license": "MIT",
 	"author": "<dev@madein.hamburg>",
@@ -22,7 +23,8 @@
 	},
 	"main": "dist/jquery.spamguard.js",
 	"scripts": {
-		"build": "gulp build"
+		"build": "gulp build",
+		"release": "gulp build && npm publish"
 	},
 	"dependencies": {
 		"jquery": ">=1.9"
