@@ -27,6 +27,7 @@
 					$response += "\\" + $string.charCodeAt(i).toString(16);
 				}
 			}
+
 			return $response;
 		});
 
@@ -35,7 +36,21 @@
 		return $(this).each(function() {
 			var $className = "spamguard-" + $$newId(12);
 
-			var $value = $(this).data("name") + "@" + $(this).data("domain") + "." + $(this).data("tld");
+			var $value = "";
+
+			if (typeof($(this).data("name")) !== "undefined") {
+				$value += $(this).data("name");
+			}
+			if (typeof($(this).data("domain")) !== "undefined") {
+				$value += "@" + $(this).data("domain");
+			}
+			if (typeof($(this).data("tld")) !== "undefined") {
+				$value += "." + $(this).data("tld");
+			}
+			if (typeof($(this).data("number")) !== "undefined") {
+				$value = $(this).data("number").replace(/([^0-9 \+\(\)\-])+/g, "");
+			}
+
 			var $valuerRversed = $value.split("").reverse().join("");
 
 			var $mailto = (typeof($(this).data("mailto")) !== "undefined" && $(this).data("mailto") !== "" && $(this).data("mailto") != "false") ? true : false;
@@ -62,14 +77,19 @@
 				$(this).on("click", function(e) {
 					e.preventDefault();
 
-					var $href = "mai";
-					$href += "lto:" + $value + "?";
+					if(typeof($(this).data("number")) !== "undefined"){
+						var $href = "t";
+						$href += "el:" + $value.replace(/([^0-9\+])+/g, "");
+					} else{
+						var $href = "mai";
+						$href += "lto:" + $value + "?";
 
-					if ($subject != false) {
-						$href += "&subject=" + encodeURIComponent($subject);
-					}
-					if ($message != false) {
-						$href += "&body=" + encodeURIComponent($message);
+						if ($subject != false) {
+							$href += "&subject=" + encodeURIComponent($subject);
+						}
+						if ($message != false) {
+							$href += "&body=" + encodeURIComponent($message);
+						}
 					}
 
 					return;

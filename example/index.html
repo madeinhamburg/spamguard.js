@@ -45,21 +45,23 @@
 
 
 	<div class="container">
-		<a class="email" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true">This text will be replaced by your mail address.</a>
+		<a class="protect-me" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true">This text will be replaced by your mail address.</a>
 
-		<a class="email" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true" data-content="true" data-subject="Contact" data-message="Hello. This is a preset.">
+		<a class="protect-me" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true" data-content="true" data-subject="Contact" data-message="Hello. This is a preset.">
 			<span class="glyphicon glyphicon-envelope"></span>
 		</a>
+
+		<a class="protect-me" href="#" data-number="_+1 %&80#8 !555;; 01qY@@23" data-mailto="true"></a>
 	</div>
 
 
 	<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery-spamguard/dist/jquery.spamguard.js"></script>
+	<script src="../dist/jquery.spamguard.js"></script>
 
 
 	<script>
 		$(function() {
-			$(".email").spamguard();
+			$(".protect-me").spamguard();
 		});
 	</script>
 </body>

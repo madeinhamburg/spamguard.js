@@ -34,6 +34,7 @@ $(selector).spamguard();
 | `data-name` | `string` | | Everything before the `@` of your email address |
 | `data-domain` | `string` | | Domain name without extension |
 | `data-tld` | `string` | | Extension without `.` |
+| `data-number` | `string` | | You can add letters and special characters for obfuscation (see example) |
 | `data-mailto` | `boolean` | false | Creates a `mailto:`-link |
 | `data-content` | `boolean` | false | When `true`, your own content will be kept. Otherwise it returns the email address. |
 | `data-subject` | `string` | | Set a custom subject for `mailto:`-link |
@@ -50,6 +51,17 @@ $(selector).spamguard();
    <i class="fa fa-heart"></i>
 </a>
 <script>
-	$(".protect-me").spamguard();
+   $(".protect-me").spamguard();
+</script>
+```
+
+
+
+### Example with phone number
+
+```html
+<a href="#" class="protect-me" data-number="_+1 %&80#8 !555;; 01qY@@23" data-mailto="true"></a>
+<script>
+   $(".protect-me").spamguard();
 </script>
 ```
