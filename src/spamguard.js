@@ -77,10 +77,10 @@
 				$(this).on("click", function(e) {
 					e.preventDefault();
 
-					if(typeof($(this).data("number")) !== "undefined"){
+					if (typeof($(this).data("number")) !== "undefined") {
 						var $href = "t";
 						$href += "el:" + $value.replace(/([^0-9\+])+/g, "");
-					} else{
+					} else {
 						var $href = "mai";
 						$href += "lto:" + $value + "?";
 
@@ -92,6 +92,7 @@
 						}
 					}
 
+					window.location.href = $href;
 					return;
 				});
 			}
