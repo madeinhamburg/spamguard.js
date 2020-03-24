@@ -39,6 +39,9 @@ $(selector).spamguard();
 | `data-content` | `boolean` | false | When `true`, your own content will be kept. Otherwise it returns the email address. |
 | `data-subject` | `string` | | Set a custom subject for `mailto:`-link |
 | `data-message` | `string` | | Set a custom message for `mailto:`-link |
+|---|---|---|---|
+| `data-text` | `string` | |   |
+| `data-remove-this` | `string` | |   |
 
 
 
@@ -61,6 +64,17 @@ $(selector).spamguard();
 
 ```html
 <a href="#" class="protect-me" data-number="_+1 %&80#8 !555;; 01qY@@23" data-mailto="true"></a>
+<script>
+   $(".protect-me").spamguard();
+</script>
+```
+
+
+
+### Example with a custom text
+
+```html
+<a href="#" class="protect-me" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-remove-this="§$%&/()=_:;.-[]"></a>
 <script>
    $(".protect-me").spamguard();
 </script>

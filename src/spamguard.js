@@ -50,6 +50,12 @@
 			if (typeof($(this).data("number")) !== "undefined") {
 				$value = $(this).data("number").replace(/([^0-9 \+\(\)\-])+/g, "");
 			}
+			if (typeof($(this).data("text")) !== "undefined" && typeof($(this).data("remove-this")) !== "undefined") {
+				$value = $(this).data("text");
+				for (i = 0; i < $(this).data("remove-this").length; i++) {
+					$value = $value.replace(new RegExp("\\" + $(this).data("remove-this")[i], "g"), "");
+				}
+			}
 
 			var $valuerRversed = $value.split("").reverse().join("");
 
