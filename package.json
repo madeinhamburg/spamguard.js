@@ -5,7 +5,7 @@
 		"type": "git",
 		"url": "git@github.com:madeinhamburg/jquery-spamguard.git"
 	},
-	"description": "Protect your email address from getting crawled by spam bots. 🤖",
+	"description": "🤖 Protect your email address from getting crawled by spam bots.",
 	"keywords": [
 		"anti-spam",
 		"email address",
