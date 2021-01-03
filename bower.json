@@ -1,6 +1,6 @@
 {
 	"name": "jquery-spamguard",
-	"version": "3.3.0",
+	"version": "3.3.1",
 	"homepage": "https://github.com/madeinhamburg/jquery-spamguard",
 	"description": "🤖 Protect your email address from getting crawled by spam bots.",
 	"keywords": [

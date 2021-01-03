@@ -4,6 +4,16 @@
 
 
 
+## Installation
+```bash
+npm install jquery-spamguard
+yarn add jquery-spamguard
+```
+
+
+
+
+
 ### Usage
 ```javascript
 $(selector).spamguard();

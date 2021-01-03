@@ -1,5 +1,5 @@
 /*!
- *  jquery-spamguard v3.3.0
+ *  jquery-spamguard v3.3.1
  *  🤖 Protect your email address from getting crawled by spam bots.
  *  https://github.com/madeinhamburg/jquery-spamguard
  *  Licensed under the MIT license.
