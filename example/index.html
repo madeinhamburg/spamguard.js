@@ -15,22 +15,15 @@
 		body {
 			padding-top: 40px;
 			padding-bottom: 40px;
-			background-color: #f5f5f5;
+			background-color: #ffffff;
 		}
 
 		.container {
 			width: 100%;
 			max-width: 640px;
-			padding: 35px 30px;
+			padding: 0px 30px;
 			margin: 0 auto 20px auto;
-			background-color: #fff;
-			border: 1px solid #e5e5e5;
-			-webkit-border-radius: 5px;
-			-moz-border-radius: 5px;
-			border-radius: 5px;
-			-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-			-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
-			box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+			background-color: #ffffff;
 		}
 
 		small {
@@ -40,30 +33,114 @@
 		.container a,
 		.container span {
 			display: block;
-			margin: 10px 0;
+		}
+
+		.code {
+			position: relative;
+			padding: 50px 15px 25px 15px;
+			margin: 0;
+			margin-top: 40px;
+			border-style: solid;
+			border-width: 1px 0;
+			background-color: #fff;
+			border-color: #ddd;
+			border-width: 1px;
+			border-bottom: 0px;
+			border-radius: 4px 4px 0 0;
+		}
+
+		.code:after {
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			font-size: 12px;
+			font-weight: 700;
+			color: #959595;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			content: "Code";
+		}
+
+		.result {
+			position: relative;
+			padding: 50px 15px 25px 15px;
+			background-color: #f7f7f9;
+			border: 1px solid #e1e1e8;
+			border-radius: 0 0 4px 4px;
+			margin-bottom: 40px;
+		}
+
+		.result:after {
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			font-size: 12px;
+			font-weight: 700;
+			color: #959595;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			content: "Result";
 		}
 	</style>
 
 
 	<div class="container">
-		<a class="protect-me" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true">This text will be replaced by your mail address.</a>
+		<h2>Examples</h2>
 
-		<a class="protect-me" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true" data-content="true" data-subject="Contact" data-message="Hello. This is a preset.">
-			<span class="glyphicon glyphicon-envelope"></span>
-		</a>
 
-		<a class="protect-me" href="#" data-number="_+1 %&80#8 !555;; 01qY@@23" data-mailto="true"></a>
+		<div class="example">
+			<div class="code"></div>
+			<div class="result">
+				<a class="protect-me" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true">
+					This text will be replaced by your mail address.
+				</a>
+			</div>
+		</div>
 
-		<span class="protect-me" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-remove-this="§$%&/()=_:;.-[]"></a>
+		<div class="example">
+			<div class="code"></div>
+			<div class="result">
+				<a class="protect-me" href="#" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true" data-content="true" data-subject="Contact" data-message="Hello. This is an example.">
+					<span class="glyphicon glyphicon-envelope"></span>
+				</a>
+			</div>
+		</div>
+
+		<div class="example">
+			<div class="code"></div>
+			<div class="result">
+				<a class="protect-me" href="#" data-number="_+1 %&80#8 !555;; 01qY@@23" data-mailto="true"></a>
+			</div>
+		</div>
+
+		<div class="example">
+			<div class="code"></div>
+			<div class="result">
+				<span class="protect-me" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-remove-this="§$%&/()=_:;.-[]"></span>
+			</div>
+		</div>
 	</div>
 
 
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-	<script src="../dist/jquery.spamguard.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-spamguard/dist/jquery.spamguard.js"></script>
 
 
 	<script>
 		$(function() {
+			$(".example").each(function() {
+				var $code = $(this).find(".result").html();
+
+				$code = $code.trim();
+				$code = $code.replaceAll("<", "&lt;");
+				$code = $code.replaceAll(">", "&gt;");
+				$code = $code.replaceAll("\n", "<br>");
+				$code = $code.replaceAll("\t\t\t\t", "");
+				$code = $code.replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+
+				$(this).find(".code").html("<code>" + $code + "</code>");
+			});
+
 			$(".protect-me").spamguard();
 		});
 	</script>
