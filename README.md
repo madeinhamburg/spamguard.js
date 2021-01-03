@@ -32,7 +32,7 @@ $(selector).spamguard();
 </script>
 ```
 
-[Demo](https://htmlpreview.github.io/?https://github.com/philippgithub/jquery-spamguard/blob/master/example/index.html)
+[Demo](https://madeinhamburg.github.io/jquery-spamguard/example/index.html)
 
 
 
