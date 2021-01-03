@@ -4,7 +4,7 @@
 
 
 
-## Installation
+### Installation
 ```bash
 npm install jquery-spamguard
 yarn add jquery-spamguard
