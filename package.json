@@ -1,9 +1,9 @@
 {
-	"name": "jquery-spamguard",
-	"version": "3.3.1",
+	"name": "spamguard.js",
+	"version": "4.0.0",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:madeinhamburg/jquery-spamguard.git"
+		"url": "git@github.com:madeinhamburg/spamguard.js.git"
 	},
 	"description": "🤖 Protect your email address from getting crawled by spam bots.",
 	"keywords": [
@@ -11,28 +11,28 @@
 		"email address",
 		"email protection",
 		"hide email",
-		"jquery-plugin",
 		"obfuscate email",
 		"spam protection"
 	],
 	"license": "MIT",
 	"author": "<dev@madein.hamburg>",
-	"homepage": "https://github.com/madeinhamburg/jquery-spamguard",
+	"homepage": "https://github.com/madeinhamburg/spamguard.js",
 	"bugs": {
-		"url": "https://github.com/madeinhamburg/jquery-spamguard/issues"
+		"url": "https://github.com/madeinhamburg/spamguard.js/issues"
 	},
-	"main": "dist/jquery.spamguard.js",
+	"main": "dist/spamguard.js",
 	"scripts": {
 		"build": "gulp build",
 		"release": "gulp build && npm publish"
 	},
-	"dependencies": {
-		"jquery": ">=1.9"
-	},
+	"dependencies": {},
 	"devDependencies": {
-		"gulp": "^4.0.2",
+		"@babel/core": "^7.16.0",
+		"@babel/preset-env": "^7.16.4",
+		"gulp-babel": "^8.0.0",
 		"gulp-concat": "^2.6.1",
-		"gulp-replace": "^1.0.0",
-		"gulp-uglify": "^3.0.2"
+		"gulp-replace": "^1.1.3",
+		"gulp-uglify": "^3.0.2",
+		"gulp": "^4.0.2"
 	}
 }

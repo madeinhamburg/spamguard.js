@@ -5,103 +5,96 @@
  *  Licensed under the @license license.
  */
 
-(function($) {
-	$.fn.spamguard = function() {
-		var $$newId = (function($length) {
-			var $characters = "abcdefghijklmnopqrstuvwxyz0123456789",
-				$string = "";
-
-			for (var i = 0; i < $length; i++) {
-				$string += $characters.charAt(Math.floor(Math.random() * $characters.length));
-			}
-
-			return $string;
-		});
-
-		var $$convertIt = (function($string, $t) {
-			var $response = "";
-			for (i = 0; i < $string.length; i++) {
-				if ($t == "hex") {
-					$response += "&#x" + $string.charCodeAt(i).toString(16) + ";";
+function spamguard($selector) {
+	var converter = (function($string, $to) {
+			var $r = "";
+			for (var s = 0; s < $string.length; s++) {
+				if ($to == "hex") {
+					$r += "&#x" + $string.charCodeAt(s).toString(16) + ";";
 				} else {
-					$response += "\\" + $string.charCodeAt(i).toString(16);
+					$r += "\\" + $string.charCodeAt(s).toString(16);
 				}
 			}
 
-			return $response;
-		});
+			return $r;
+		}),
+		$cssTextNode = "",
+		$elements = document.querySelectorAll($selector);
 
 
+	for (var i = 0; i < $elements.length; i++) {
+		var $el = $elements[i],
+			$value,
+			$cssClassname = "spamguard-" + (Math.floor(Math.random() * 999999) + 100000),
+			$mailto = (typeof($el.getAttribute("data-mailto")) === "string" && $el.getAttribute("data-mailto") !== "" && $el.getAttribute("data-mailto") != "false") ? true : false,
+			$content = (typeof($el.getAttribute("data-content")) === "string" && $el.getAttribute("data-content") !== "" && $el.getAttribute("data-content") != "false") ? true : false;
 
-		return $(this).each(function() {
-			var $className = "spamguard-" + $$newId(12);
 
-			var $value = "";
+		if ($content == false) {
+			$el.innerHTML = "";
+			$el.classList.add($cssClassname);
 
-			if (typeof($(this).data("name")) !== "undefined") {
-				$value += $(this).data("name");
+			if (typeof($el.getAttribute("data-name")) === "string" && typeof($el.getAttribute("data-domain")) === "string" && typeof($el.getAttribute("data-tld")) === "string") {
+				$value = $el.getAttribute("data-name") + "@" + $el.getAttribute("data-domain") + "." + $el.getAttribute("data-tld");
 			}
-			if (typeof($(this).data("domain")) !== "undefined") {
-				$value += "@" + $(this).data("domain");
+
+			if (typeof($el.getAttribute("data-number")) === "string") {
+				$value = $el.getAttribute("data-number").replace(/([^0-9 \+\(\)\-])+/g, "");
 			}
-			if (typeof($(this).data("tld")) !== "undefined") {
-				$value += "." + $(this).data("tld");
-			}
-			if (typeof($(this).data("number")) !== "undefined") {
-				$value = $(this).data("number").replace(/([^0-9 \+\(\)\-])+/g, "");
-			}
-			if (typeof($(this).data("text")) !== "undefined" && typeof($(this).data("remove-this")) !== "undefined") {
-				$value = $(this).data("text");
-				for (i = 0; i < $(this).data("remove-this").length; i++) {
-					$value = $value.replace(new RegExp("\\" + $(this).data("remove-this")[i], "g"), "");
+
+			if (typeof($el.getAttribute("data-text")) === "string" && typeof($el.getAttribute("data-salt")) === "string") {
+				$value = $el.getAttribute("data-text");
+				for (i = 0; i < $el.getAttribute("data-salt").length; i++) {
+					$value = $value.replace(new RegExp("\\" + $el.getAttribute("data-salt")[i], "g"), "");
 				}
 			}
 
 			var $valuerRversed = $value.split("").reverse().join("");
 
-			var $mailto = (typeof($(this).data("mailto")) !== "undefined" && $(this).data("mailto") !== "" && $(this).data("mailto") != "false") ? true : false;
-			var $content = (typeof($(this).data("content")) !== "undefined" && $(this).data("content") !== "" && $(this).data("content") != "false") ? true : false;
 
-			var $subject = (typeof($(this).data("subject")) !== "undefined" && $(this).data("subject") !== "" && $(this).data("subject") != "false") ? $(this).data("subject") : false;
-			var $message = (typeof($(this).data("message")) !== "undefined" && $(this).data("message") !== "" && $(this).data("message") != "false") ? $(this).data("message") : false;
+			$valuerRversed.split("").forEach(function($v, n) {
+				$el.innerHTML += "<span>" + ($v == " " ? "&nbsp;" : "") + "</span>";
+				$cssTextNode += "." + $cssClassname + " span:nth-child(" + (n + 1) + "):after{content:\"" + converter($v) + "\"}";
+			});
 
-
-			if ($content == false) {
-				$("head").append("<style>." + $className + ":after{content:\"" + $$convertIt($valuerRversed) + "\"}</style>");
-
-				$(this).css({
-					"direction": "rtl",
-					"unicode-bidi": "bidi-override",
-					"text-align": "left",
-				});
-
-				$(this).addClass($className).html("");
-			}
+			$cssTextNode += "." + $cssClassname + "{display:flex!important;flex-flow:row-reverse;flex-wrap:wrap-reverse;justify-content: flex-end;}";
+		}
 
 
-			if ($mailto == true) {
-				$(this).on("click", function(e) {
-					e.preventDefault();
+		if ($mailto == true) {
+			$el.addEventListener("click", function(e) {
+				e.preventDefault();
 
-					if (typeof($(this).data("number")) !== "undefined") {
-						var $href = "t";
-						$href += "el:" + $value.replace(/([^0-9\+])+/g, "");
-					} else {
-						var $href = "mai";
-						$href += "lto:" + $value + "?";
+				if (typeof(this.getAttribute("data-name")) === "string" && typeof(this.getAttribute("data-domain")) === "string" && typeof(this.getAttribute("data-tld")) === "string") {
+					var $href = "mailto:" +
+						this.getAttribute("data-name") +
+						"@" + this.getAttribute("data-domain") +
+						"." + this.getAttribute("data-tld") +
+						"?";
 
-						if ($subject != false) {
-							$href += "&subject=" + encodeURIComponent($subject);
-						}
-						if ($message != false) {
-							$href += "&body=" + encodeURIComponent($message);
-						}
+					if (typeof(this.getAttribute("data-subject")) === "string" && this.getAttribute("data-subject") !== "" && this.getAttribute("data-subject") != "false") {
+						$href += "&subject=" + encodeURIComponent(this.getAttribute("data-subject"));
 					}
+					if (typeof(this.getAttribute("data-message")) === "string" && this.getAttribute("data-message") !== "" && this.getAttribute("data-message") != "false") {
+						$href += "&body=" + encodeURIComponent(this.getAttribute("data-message"));
+					}
+				}
 
+				if (typeof(this.getAttribute("data-number")) === "string") {
+					var $href = "tel:" + this.getAttribute("data-number").replace(/([^0-9\+])+/g, "");
+				}
+
+				if ($href) {
 					window.location.href = $href;
-					return;
-				});
-			}
-		});
-	};
-})(jQuery);
+				}
+			}, false);
+		}
+	}
+
+
+	if ($cssTextNode) {
+		var $styleEl = document.createElement("style");
+		$styleEl.appendChild(document.createTextNode($cssTextNode));
+		document.getElementsByTagName("body")[0].appendChild($styleEl);
+	}
+}

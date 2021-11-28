@@ -1,4 +1,4 @@
-# jQuery Spam Guard
+# spamguard.js
 
 
 
@@ -6,8 +6,8 @@
 
 ### Installation
 ```bash
-npm install jquery-spamguard
-yarn add jquery-spamguard
+npm install spamguard.js
+yarn add spamguard.js
 ```
 
 
@@ -16,23 +16,20 @@ yarn add jquery-spamguard
 
 ### Usage
 ```javascript
-$(selector).spamguard();
+spamguard(selector);
 ```
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-spamguard/dist/jquery.spamguard.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/spamguard.js/dist/spamguard.js"></script>
 
-<a href="#" class="protect-me" data-name="mark" data-domain="gmail" data-tld="com"></a>
+<a href="#" class="obfuscate-it" data-name="mark" data-domain="gmail" data-tld="com"></a>
 
 <script>
-   $(function(){
-      $(".protect-me").spamguard();
-   });
+	spamguard(".obfuscate-it");
 </script>
 ```
 
-[Demo](https://madeinhamburg.github.io/jquery-spamguard/example/index.html)
+[Demo](https://madeinhamburg.github.io/spamguard.js/example/index.html)
 
 
 
@@ -50,8 +47,8 @@ $(selector).spamguard();
 | `data-subject` | `string` | | Set a custom subject for `mailto:`-link |
 | `data-message` | `string` | | Set a custom message for `mailto:`-link |
 |---|---|---|---|
-| `data-text` | `string` | |   |
-| `data-remove-this` | `string` | |   |
+| `data-text` | `string` | |  |
+| `data-salt` | `string` | |   |
 
 
 
@@ -60,11 +57,11 @@ $(selector).spamguard();
 ### Example with custom content
 
 ```html
-<a href="#" class="protect-me" data-name="mark" data-domain="gmail" data-tld="com" data-content="true" data-mailto="true">
+<a href="#" class="obfuscate-it" data-name="mark" data-domain="gmail" data-tld="com" data-content="true" data-mailto="true">
    <i class="fa fa-heart"></i>
 </a>
 <script>
-   $(".protect-me").spamguard();
+	spamguard(".obfuscate-it");
 </script>
 ```
 
@@ -73,9 +70,9 @@ $(selector).spamguard();
 ### Example with phone number
 
 ```html
-<a href="#" class="protect-me" data-number="_+1 %&80#8 !555;; 01qY@@23" data-mailto="true"></a>
+<a href="#" class="obfuscate-it" data-number="_+1 %&80#8 !555;; 01qY@@23" data-mailto="true"></a>
 <script>
-   $(".protect-me").spamguard();
+	spamguard(".obfuscate-it");
 </script>
 ```
 
@@ -84,8 +81,8 @@ $(selector).spamguard();
 ### Example with a custom text
 
 ```html
-<a href="#" class="protect-me" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-remove-this="§$%&/()=_:;.-[]"></a>
+<a href="#" class="obfuscate-it" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-remove-this="§$%&/()=_:;.-[]"></a>
 <script>
-   $(".protect-me").spamguard();
+	spamguard(".obfuscate-it");
 </script>
 ```
