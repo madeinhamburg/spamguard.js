@@ -25,15 +25,13 @@ function spamguard($selector) {
 	for (var i = 0; i < $elements.length; i++) {
 		var $el = $elements[i],
 			$value,
-			$cssClassname = "spamguard-" + (Math.floor(Math.random() * 999999) + 100000),
+			$html = "",
+			$cssClassname = "spamguard-" + (Math.random().toString(36).substring(2, 7) + Math.random().toString(36).substring(2, 7)),
 			$mailto = (typeof($el.getAttribute("data-mailto")) === "string" && $el.getAttribute("data-mailto") !== "" && $el.getAttribute("data-mailto") != "false") ? true : false,
 			$content = (typeof($el.getAttribute("data-content")) === "string" && $el.getAttribute("data-content") !== "" && $el.getAttribute("data-content") != "false") ? true : false;
 
 
 		if ($content == false) {
-			$el.innerHTML = "";
-			$el.classList.add($cssClassname);
-
 			if (typeof($el.getAttribute("data-name")) === "string" && typeof($el.getAttribute("data-domain")) === "string" && typeof($el.getAttribute("data-tld")) === "string") {
 				$value = $el.getAttribute("data-name") + "@" + $el.getAttribute("data-domain") + "." + $el.getAttribute("data-tld");
 			}
@@ -53,11 +51,13 @@ function spamguard($selector) {
 
 
 			$valuerRversed.split("").forEach(function($v, n) {
-				$el.innerHTML += "<span>" + ($v == " " ? "&nbsp;" : "") + "</span>";
-				$cssTextNode += "." + $cssClassname + " span:nth-child(" + (n + 1) + "):after{content:\"" + converter($v) + "\"}";
+				$html += "<span>" + ($v == " " ? "&nbsp;" : "") + "</span>";
+				$cssTextNode += "." + $cssClassname + ">span span:nth-child(" + (n + 1) + "):after{content:\"" + converter($v) + "\"}";
 			});
 
-			$cssTextNode += "." + $cssClassname + "{display:flex!important;flex-flow:row-reverse;flex-wrap:wrap-reverse;justify-content: flex-end;}";
+			$el.innerHTML = "<span>" + $html + "</span>";
+			$el.classList.add($cssClassname);
+			$cssTextNode += "." + $cssClassname + ">span{display:flex!important;flex-flow:row-reverse;flex-wrap:wrap-reverse;justify-content: flex-end;}";
 		}
 
 

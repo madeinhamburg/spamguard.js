@@ -81,7 +81,7 @@ spamguard(selector);
 ### Example with a custom text
 
 ```html
-<a href="#" class="obfuscate-it" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-remove-this="§$%&/()=_:;.-[]"></a>
+<a href="#" class="obfuscate-it" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-salt="§$%&/()=_:;.-[]"></a>
 <script>
 	spamguard(".obfuscate-it");
 </script>
