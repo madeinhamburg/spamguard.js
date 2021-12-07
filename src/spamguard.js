@@ -47,60 +47,64 @@ function spamguard($selector) {
 			$content = (typeof($el.getAttribute("data-content")) === "string" && $el.getAttribute("data-content") !== "" && $el.getAttribute("data-content") != "false") ? true : false;
 
 
-		if ($content == false) {
-			if (typeof($el.getAttribute("data-name")) === "string" && typeof($el.getAttribute("data-domain")) === "string" && typeof($el.getAttribute("data-tld")) === "string") {
-				$value = desalt($el, "data-name") + "@" + desalt($el, "data-domain") + "." + desalt($el, "data-tld");
+		if (!$el.hasAttribute("data-spamguard")) {
+			$el.setAttribute("data-spamguard", true);
+
+			if ($content == false) {
+				if (typeof($el.getAttribute("data-name")) === "string" && typeof($el.getAttribute("data-domain")) === "string" && typeof($el.getAttribute("data-tld")) === "string") {
+					$value = desalt($el, "data-name") + "@" + desalt($el, "data-domain") + "." + desalt($el, "data-tld");
+				}
+
+				if (typeof($el.getAttribute("data-number")) === "string") {
+					$value = desalt($el, "data-number");
+				}
+
+				if (typeof($el.getAttribute("data-text")) === "string" && typeof($el.getAttribute("data-salt")) === "string") {
+					$value = desalt($el, "data-text");
+				}
+
+				var $valuerRversed = $value.split("").reverse().join("");
+
+
+				$valuerRversed.split("").forEach(function($v, n) {
+					$html += "<span>" + ($v == " " ? "&nbsp;" : "") + "</span>";
+					$cssTextNode += "." + $cssClassname + ">span span:nth-child(" + (n + 1) + "):after{content:\"" + converter($v) + "\"}";
+				});
+
+				$el.innerHTML = "<span>" + $html + "</span>";
+				$el.classList.add($cssClassname);
+				$cssTextNode += "." + $cssClassname + ">span{display:flex!important;flex-flow:row-reverse;flex-wrap:wrap-reverse;justify-content: flex-end;}";
 			}
 
-			if (typeof($el.getAttribute("data-number")) === "string") {
-				$value = desalt($el, "data-number");
-			}
 
-			if (typeof($el.getAttribute("data-text")) === "string" && typeof($el.getAttribute("data-salt")) === "string") {
-				$value = desalt($el, "data-text");
-			}
+			if ($mailto == true) {
+				$el.addEventListener("click", function(e) {
+					e.preventDefault();
 
-			var $valuerRversed = $value.split("").reverse().join("");
+					if (typeof(this.getAttribute("data-name")) === "string" && typeof(this.getAttribute("data-domain")) === "string" && typeof(this.getAttribute("data-tld")) === "string") {
+						var $href = "mailto:" +
+							desalt(this, "data-name") +
+							"@" + desalt(this, "data-domain") +
+							"." + desalt(this, "data-tld") +
+							"?";
 
-
-			$valuerRversed.split("").forEach(function($v, n) {
-				$html += "<span>" + ($v == " " ? "&nbsp;" : "") + "</span>";
-				$cssTextNode += "." + $cssClassname + ">span span:nth-child(" + (n + 1) + "):after{content:\"" + converter($v) + "\"}";
-			});
-
-			$el.innerHTML = "<span>" + $html + "</span>";
-			$el.classList.add($cssClassname);
-			$cssTextNode += "." + $cssClassname + ">span{display:flex!important;flex-flow:row-reverse;flex-wrap:wrap-reverse;justify-content: flex-end;}";
-		}
-
-
-		if ($mailto == true) {
-			$el.addEventListener("click", function(e) {
-				e.preventDefault();
-
-				if (typeof(this.getAttribute("data-name")) === "string" && typeof(this.getAttribute("data-domain")) === "string" && typeof(this.getAttribute("data-tld")) === "string") {
-					var $href = "mailto:" +
-						desalt(this, "data-name") +
-						"@" + desalt(this, "data-domain") +
-						"." + desalt(this, "data-tld") +
-						"?";
-
-					if (typeof(this.getAttribute("data-subject")) === "string" && this.getAttribute("data-subject") !== "" && this.getAttribute("data-subject") != "false") {
-						$href += "&subject=" + encodeURIComponent(this.getAttribute("data-subject"));
+						if (typeof(this.getAttribute("data-subject")) === "string" && this.getAttribute("data-subject") !== "" && this.getAttribute("data-subject") != "false") {
+							$href += "&subject=" + encodeURIComponent(this.getAttribute("data-subject"));
+						}
+						if (typeof(this.getAttribute("data-message")) === "string" && this.getAttribute("data-message") !== "" && this.getAttribute("data-message") != "false") {
+							$href += "&body=" + encodeURIComponent(this.getAttribute("data-message"));
+						}
 					}
-					if (typeof(this.getAttribute("data-message")) === "string" && this.getAttribute("data-message") !== "" && this.getAttribute("data-message") != "false") {
-						$href += "&body=" + encodeURIComponent(this.getAttribute("data-message"));
+
+					if (typeof(this.getAttribute("data-number")) === "string") {
+						var $href = "tel:" + desalt(this, "data-number");
 					}
-				}
 
-				if (typeof(this.getAttribute("data-number")) === "string") {
-					var $href = "tel:" + desalt(this, "data-number");
-				}
-
-				if ($href) {
-					window.location.href = $href;
-				}
-			}, false);
+					if ($href) {
+						window.location.href = $href;
+					}
+				}, false);
+			}
 		}
 	}
 

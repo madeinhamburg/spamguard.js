@@ -1,6 +1,6 @@
 {
 	"name": "spamguard.js",
-	"version": "4.2.0",
+	"version": "4.3.0",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:madeinhamburg/spamguard.js.git"
@@ -8,11 +8,13 @@
 	"description": "🤖 Protect your email address from getting crawled by spam bots.",
 	"keywords": [
 		"anti-spam",
-		"email address",
-		"email protection",
+		"email",
 		"hide email",
 		"obfuscate email",
-		"spam protection"
+		"obfuscation",
+		"obfuscator",
+		"protection",
+		"spam"
 	],
 	"license": "MIT",
 	"author": "<dev@madein.hamburg>",
