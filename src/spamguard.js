@@ -18,6 +18,22 @@ function spamguard($selector) {
 
 			return $r;
 		}),
+		desalt = (function($el, $attr) {
+			var $value = $el.getAttribute($attr);
+
+			if (typeof($el.getAttribute("data-salt")) === "string") {
+				var $salt = $el.getAttribute("data-salt");
+				for (var s = 0; s < $salt.length; s++) {
+					if (/^[A-Za-z0-9]$/.test($salt[s])) {
+						$value = $value.replace(new RegExp($salt[s], "g"), "");
+					} else {
+						$value = $value.replace(new RegExp("\\" + $salt[s], "g"), "");
+					}
+				}
+			}
+
+			return $value;
+		}),
 		$cssTextNode = "",
 		$elements = document.querySelectorAll($selector);
 
@@ -33,18 +49,15 @@ function spamguard($selector) {
 
 		if ($content == false) {
 			if (typeof($el.getAttribute("data-name")) === "string" && typeof($el.getAttribute("data-domain")) === "string" && typeof($el.getAttribute("data-tld")) === "string") {
-				$value = $el.getAttribute("data-name") + "@" + $el.getAttribute("data-domain") + "." + $el.getAttribute("data-tld");
+				$value = desalt($el, "data-name") + "@" + desalt($el, "data-domain") + "." + desalt($el, "data-tld");
 			}
 
 			if (typeof($el.getAttribute("data-number")) === "string") {
-				$value = $el.getAttribute("data-number").replace(/([^0-9 \+\(\)\-])+/g, "");
+				$value = desalt($el, "data-number");
 			}
 
 			if (typeof($el.getAttribute("data-text")) === "string" && typeof($el.getAttribute("data-salt")) === "string") {
-				$value = $el.getAttribute("data-text");
-				for (i = 0; i < $el.getAttribute("data-salt").length; i++) {
-					$value = $value.replace(new RegExp("\\" + $el.getAttribute("data-salt")[i], "g"), "");
-				}
+				$value = desalt($el, "data-text");
 			}
 
 			var $valuerRversed = $value.split("").reverse().join("");
@@ -67,9 +80,9 @@ function spamguard($selector) {
 
 				if (typeof(this.getAttribute("data-name")) === "string" && typeof(this.getAttribute("data-domain")) === "string" && typeof(this.getAttribute("data-tld")) === "string") {
 					var $href = "mailto:" +
-						this.getAttribute("data-name") +
-						"@" + this.getAttribute("data-domain") +
-						"." + this.getAttribute("data-tld") +
+						desalt(this, "data-name") +
+						"@" + desalt(this, "data-domain") +
+						"." + desalt(this, "data-tld") +
 						"?";
 
 					if (typeof(this.getAttribute("data-subject")) === "string" && this.getAttribute("data-subject") !== "" && this.getAttribute("data-subject") != "false") {
@@ -81,7 +94,7 @@ function spamguard($selector) {
 				}
 
 				if (typeof(this.getAttribute("data-number")) === "string") {
-					var $href = "tel:" + this.getAttribute("data-number").replace(/([^0-9\+])+/g, "");
+					var $href = "tel:" + desalt(this, "data-number");
 				}
 
 				if ($href) {

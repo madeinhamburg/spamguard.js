@@ -22,7 +22,7 @@ spamguard(selector);
 ```html
 <script src="https://cdn.jsdelivr.net/npm/spamguard.js/dist/spamguard.js"></script>
 
-<a href="#" class="obfuscate-it" data-name="mark" data-domain="gmail" data-tld="com"></a>
+<a href="#" class="obfuscate-it" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true"></a>
 
 <script>
 	spamguard(".obfuscate-it");
@@ -41,14 +41,13 @@ spamguard(selector);
 | `data-name` | `string` | | Everything before the `@` of your email address |
 | `data-domain` | `string` | | Domain name without extension |
 | `data-tld` | `string` | | Extension without `.` |
+| `data-salt` | `string` | | Additional characters for confusion, which are removed |
 | `data-number` | `string` | | You can add letters and special characters for obfuscation (see example) |
 | `data-mailto` | `boolean` | false | Creates a `mailto:`-link |
 | `data-content` | `boolean` | false | When `true`, your own content will be kept. Otherwise it returns the email address. |
 | `data-subject` | `string` | | Set a custom subject for `mailto:`-link |
 | `data-message` | `string` | | Set a custom message for `mailto:`-link |
-|---|---|---|---|
-| `data-text` | `string` | |  |
-| `data-salt` | `string` | |   |
+| `data-text` | `string` | | Obfuscate a custom string |
 
 
 
@@ -57,8 +56,8 @@ spamguard(selector);
 ### Example with custom content
 
 ```html
-<a href="#" class="obfuscate-it" data-name="mark" data-domain="gmail" data-tld="com" data-content="true" data-mailto="true">
-   <i class="fa fa-heart"></i>
+<a href="#" class="obfuscate-it" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true" data-content="true">
+	<i class="fa fa-heart"></i>
 </a>
 <script>
 	spamguard(".obfuscate-it");
@@ -70,7 +69,7 @@ spamguard(selector);
 ### Example with phone number
 
 ```html
-<a href="#" class="obfuscate-it" data-number="_+1 %&80#8 !555;; 01qY@@23" data-mailto="true"></a>
+<a href="#" class="obfuscate-it" data-number="_+1 $&80=8 :555;; 01-))23" data-salt="§$%&/()=_:;.-[]" data-mailto="true"></a>
 <script>
 	spamguard(".obfuscate-it");
 </script>
@@ -81,7 +80,7 @@ spamguard(selector);
 ### Example with a custom text
 
 ```html
-<a href="#" class="obfuscate-it" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-salt="§$%&/()=_:;.-[]"></a>
+<span class="obfuscate-it" data-text="H$e__l-[l].o ::W=o)r%&%ld.!" data-salt="§$%&/()=_:;.-[]"></span>
 <script>
 	spamguard(".obfuscate-it");
 </script>
