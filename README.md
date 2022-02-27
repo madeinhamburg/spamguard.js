@@ -1,12 +1,5 @@
 # spamguard.js
 
-Origine : https://github.com/madeinhamburg/spamguard.js
-
-Ajout de : 
- *  data-protocol="" sur data-number : whatsapp / tel / sms
- *  data-sgalign="" : alignement pour affichage selon CSS justify-content
-
-
 ### Usage
 ```javascript
 spamguard(selector);
