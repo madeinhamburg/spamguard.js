@@ -1,13 +1,8 @@
-"use strict";
 /*!
- *  spamguard.js v4.3.0
+ *  spamguard.js v4.4.0
  *  🤖 Protect your email address from getting crawled by spam bots.
  *  https://github.com/madeinhamburg/spamguard.js
  *  Licensed under the MIT license.
- ***
- *  Ajout de : 
- *  - data-protocol="" sur data-number : whatsapp / tel / sms
- *  - data-sgalign="" : alignement pour affichage selon CSS justify-content
  */
 function spamguard($selector) {
 	var converter = (function($string, $to) {
