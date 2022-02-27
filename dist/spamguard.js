@@ -1,6 +1,6 @@
 "use strict";
 /*!
- *  spamguard.js v4.3.0
+ *  spamguard.js v4.4.0
  *  🤖 Protect your email address from getting crawled by spam bots.
  *  https://github.com/madeinhamburg/spamguard.js
  *  Licensed under the MIT license.
