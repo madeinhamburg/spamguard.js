@@ -1,18 +1,10 @@
 # spamguard.js
 
-
-
-
-
 ### Installation
 ```bash
 npm install spamguard.js
 yarn add spamguard.js
 ```
-
-
-
-
 
 ### Usage
 ```javascript
@@ -21,19 +13,13 @@ spamguard(selector);
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/spamguard.js/dist/spamguard.js"></script>
-
 <a href="#" class="obfuscate-it" data-name="mark" data-domain="gmail" data-tld="com" data-mailto="true"></a>
-
 <script>
 	spamguard(".obfuscate-it");
 </script>
 ```
 
 [Demo](https://madeinhamburg.github.io/spamguard.js/example/index.html)
-
-
-
-
 
 ### Options
 | Attribute | Type | Default | Description |
@@ -48,10 +34,8 @@ spamguard(selector);
 | `data-subject` | `string` | | Set a custom subject for `mailto:`-link |
 | `data-message` | `string` | | Set a custom message for `mailto:`-link |
 | `data-text` | `string` | | Obfuscate a custom string |
-
-
-
-
+| `data-protocol` | `string` | tel | Set the protocol on number : whatsapp, tel, sms  |
+| `data-sgalign` | `string` | center | Correspond to justify-content |
 
 ### Example with custom content
 
@@ -64,8 +48,6 @@ spamguard(selector);
 </script>
 ```
 
-
-
 ### Example with phone number
 
 ```html
@@ -74,8 +56,6 @@ spamguard(selector);
 	spamguard(".obfuscate-it");
 </script>
 ```
-
-
 
 ### Example with a custom text
 
