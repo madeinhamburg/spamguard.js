@@ -1,10 +1,18 @@
 # spamguard.js
 
+
+
+
+
 ### Installation
 ```bash
 npm install spamguard.js
 yarn add spamguard.js
 ```
+
+
+
+
 
 ### Usage
 ```javascript
@@ -21,6 +29,10 @@ spamguard(selector);
 
 [Demo](https://madeinhamburg.github.io/spamguard.js/example/index.html)
 
+
+
+
+
 ### Options
 | Attribute | Type | Default | Description |
 |---|---|---|---|
@@ -34,8 +46,12 @@ spamguard(selector);
 | `data-subject` | `string` | | Set a custom subject for `mailto:`-link |
 | `data-message` | `string` | | Set a custom message for `mailto:`-link |
 | `data-text` | `string` | | Obfuscate a custom string |
-| `data-protocol` | `string` | tel | Set the protocol on number : whatsapp, tel, sms  |
-| `data-sgalign` | `string` | center | Correspond to justify-content |
+| `data-protocol` | `string` | tel | Set the protocol on `data-number`: `whatsapp`, `tel`, `sms`  |
+| `data-align-content` | `string` | left | Correspond to justify-content |
+
+
+
+
 
 ### Example with custom content
 
@@ -52,6 +68,15 @@ spamguard(selector);
 
 ```html
 <a href="#" class="obfuscate-it" data-number="_+1 $&80=8 :555;; 01-))23" data-salt="§$%&/()=_:;.-[]" data-mailto="true"></a>
+<script>
+	spamguard(".obfuscate-it");
+</script>
+```
+
+### Example with WhatsApp number
+
+```html
+<a href="#" class="obfuscate-it" data-number="_+1 $&80=8 :555;; 01-))23" data-salt="§$%&/()=_:;.-[]" data-protocol="whatsapp" data-mailto="true"></a>
 <script>
 	spamguard(".obfuscate-it");
 </script>

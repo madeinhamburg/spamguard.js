@@ -1,9 +1,10 @@
 /*!
- *  spamguard.js v4.4.0
- *  🤖 Protect your email address from getting crawled by spam bots.
- *  https://github.com/madeinhamburg/spamguard.js
- *  Licensed under the MIT license.
+ *  @name v@version
+ *  @description
+ *  @homepage
+ *  Licensed under the @license license.
  */
+
 function spamguard($selector) {
 	var converter = (function($string, $to) {
 			var $r = "";
@@ -42,9 +43,9 @@ function spamguard($selector) {
 			$value,
 			$html = "",
 			$cssClassname = "spamguard-" + (Math.random().toString(36).substring(2, 7) + Math.random().toString(36).substring(2, 7)),
-            $mailto = (typeof ($el.getAttribute("data-mailto")) === "string" && $el.getAttribute("data-mailto") !== "" && $el.getAttribute("data-mailto") != "false") ? true : false,
-            $content = (typeof ($el.getAttribute("data-content")) === "string" && $el.getAttribute("data-content") !== "" && $el.getAttribute("data-content") != "false") ? true : false,
-            $sgalign = (typeof ($el.getAttribute("data-sgalign")) === "string" && $el.getAttribute("data-sgalign") !== "") ? $el.getAttribute("data-sgalign") : "center";
+			$mailto = (typeof($el.getAttribute("data-mailto")) === "string" && $el.getAttribute("data-mailto") !== "" && $el.getAttribute("data-mailto") != "false") ? true : false,
+			$content = (typeof($el.getAttribute("data-content")) === "string" && $el.getAttribute("data-content") !== "" && $el.getAttribute("data-content") != "false") ? true : false,
+			$alignContent = (typeof($el.getAttribute("data-align-content")) === "string" && $el.getAttribute("data-align-content") !== "") ? $el.getAttribute("data-align-content") : "left";
 
 
 		if (!$el.hasAttribute("data-spamguard")) {
@@ -73,11 +74,11 @@ function spamguard($selector) {
 
 				$el.innerHTML = "<span>" + $html + "</span>";
 				$el.classList.add($cssClassname);
-				$cssTextNode += "." + $cssClassname + ">span{display:flex!important;flex-flow:row-reverse;flex-wrap:wrap-reverse;justify-content:" + $sgalign +";}";
+				$cssTextNode += "." + $cssClassname + ">span{display:flex!important;flex-flow:row-reverse;flex-wrap:wrap-reverse;justify-content:" + $alignContent + ";}";
 			}
 
 
-            if ($mailto == true) {
+			if ($mailto == true) {
 				$el.addEventListener("click", function(e) {
 					e.preventDefault();
 
@@ -96,19 +97,24 @@ function spamguard($selector) {
 						}
 					}
 
-                    if (typeof (this.getAttribute("data-number")) === "string") {
-                        if (typeof (this.getAttribute("data-protocol")) === "string" && this.getAttribute("data-protocol") !== "") {
-                            if (this.getAttribute("data-protocol") === 'whatsapp') {
-                                var $href = "//wa.me/" + desalt(this, "data-number");
-                            } else {
-                                var $href = this.getAttribute("data-protocol") + ":" + desalt(this, "data-number");
-                            }
-                        } else {
-                            var $href =  "tel:" + desalt(this, "data-number")
-                        }
+					if (typeof(this.getAttribute("data-number")) === "string") {
+						if (typeof(this.getAttribute("data-protocol")) === "string" && this.getAttribute("data-protocol") !== "") {
+							if (this.getAttribute("data-protocol") === "whatsapp") {
+								var $href = "https://wa.me/" + desalt(this, "data-number").replace(new RegExp("\\+| ", "g"), "");
+
+								if (typeof(this.getAttribute("data-message")) === "string" && this.getAttribute("data-message") !== "" && this.getAttribute("data-message") != "false") {
+									$href += "?text=" + encodeURIComponent(this.getAttribute("data-message"));
+								}
+
+							} else {
+								var $href = this.getAttribute("data-protocol") + ":" + desalt(this, "data-number");
+							}
+						} else {
+							var $href = "tel:" + desalt(this, "data-number")
+						}
 					}
 
-                    if ($href) {
+					if ($href) {
 						window.location.href = $href;
 					}
 				}, false);
