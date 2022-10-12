@@ -1,23 +1,12 @@
 {
-	"name": "spamguard.js",
-	"version": "4.4.0",
-	"homepage": "https://github.com/madeinhamburg/spamguard.js",
-	"description": "🤖 Protect your email address from getting crawled by spam bots.",
-	"keywords": [
-		"anti-spam",
-		"email",
-		"hide email",
-		"obfuscate email",
-		"obfuscation",
-		"obfuscator",
-		"protection",
-		"spam"
-	],
-	"license": "MIT",
-	"moduleType": [],
-	"authors": [
-		"<dev@madein.hamburg>"
-	],
-	"main": "dist/spamguard.js",
-	"dependencies": {}
+    "name": "spamguard.js",
+    "version": "4.5.0-dev",
+    "homepage": "https://github.com/madeinhamburg/spamguard.js",
+    "description": "🤖 Protect your email address from being crawled by spam bots.",
+    "keywords": ["anti-spam", "email", "hide email", "obfuscate email", "obfuscation", "obfuscator", "protection", "spam"],
+    "license": "MIT",
+    "moduleType": [],
+    "authors": ["<dev@madein.hamburg>"],
+    "main": "dist/spamguard.js",
+    "dependencies": {}
 }

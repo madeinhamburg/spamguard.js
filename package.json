@@ -1,40 +1,40 @@
 {
-	"name": "spamguard.js",
-	"version": "4.4.0",
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:madeinhamburg/spamguard.js.git"
-	},
-	"description": "🤖 Protect your email address from getting crawled by spam bots.",
-	"keywords": [
-		"anti-spam",
-		"email",
-		"hide email",
-		"obfuscate email",
-		"obfuscation",
-		"obfuscator",
-		"protection",
-		"spam"
-	],
-	"license": "MIT",
-	"author": "<dev@madein.hamburg>",
-	"homepage": "https://github.com/madeinhamburg/spamguard.js",
-	"bugs": {
-		"url": "https://github.com/madeinhamburg/spamguard.js/issues"
-	},
-	"main": "dist/spamguard.js",
-	"scripts": {
-		"build": "gulp build",
-		"release": "gulp build && npm publish"
-	},
-	"dependencies": {},
-	"devDependencies": {
-		"@babel/core": "^7.16.0",
-		"@babel/preset-env": "^7.16.4",
-		"gulp-babel": "^8.0.0",
-		"gulp-concat": "^2.6.1",
-		"gulp-replace": "^1.1.3",
-		"gulp-uglify": "^3.0.2",
-		"gulp": "^4.0.2"
-	}
+    "name": "spamguard.js",
+    "version": "4.4.1",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:madeinhamburg/spamguard.js.git"
+    },
+    "description": "🤖 Protect your email address from being crawled by spam bots.",
+    "keywords": [
+        "anti-spam",
+        "email",
+        "hide email",
+        "obfuscate email",
+        "obfuscation",
+        "obfuscator",
+        "protection",
+        "spam"
+    ],
+    "license": "MIT",
+    "author": "<dev@madein.hamburg>",
+    "homepage": "https://github.com/madeinhamburg/spamguard.js",
+    "bugs": {
+        "url": "https://github.com/madeinhamburg/spamguard.js/issues"
+    },
+    "main": "dist/spamguard.js",
+    "scripts": {
+        "build": "gulp build",
+        "release": "gulp build && npm publish"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@babel/core": "^7.19.3",
+        "@babel/preset-env": "^7.19.4",
+        "gulp": "^4.0.2",
+        "gulp-babel": "^8.0.0",
+        "gulp-concat": "^2.6.1",
+        "gulp-replace": "^1.1.3",
+        "gulp-uglify": "^3.0.2"
+    }
 }

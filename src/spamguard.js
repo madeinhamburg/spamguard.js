@@ -1,9 +1,9 @@
 /*!
- *  @name v@version
- *  @description
- *  @homepage
- *  Licensed under the @license license.
- */
+*  spamguard.js v4.5.0-dev
+*  🤖 Protect your email address from being crawled by spam bots.
+*  https://github.com/madeinhamburg/spamguard.js
+*  Licensed under the MIT license.
+*/
 
 function spamguard($selector) {
 	var converter = (function($string, $to) {

@@ -76,7 +76,7 @@ spamguard(selector);
 ### Example with WhatsApp number
 
 ```html
-<a href="#" class="obfuscate-it" data-number="_+1 $&80=8 :555;; 01-))23" data-salt="§$%&/()=_:;.-[]" data-protocol="whatsapp" data-mailto="true"></a>
+<a href="#" class="obfuscate-it" data-number="_+1 $&80=8 :555;; 01-))23" data-salt="§$%&/()=_:;.-[]" data-protocol="whatsapp" data-message="Hi there!" data-mailto="true"></a>
 <script>
 	spamguard(".obfuscate-it");
 </script>
